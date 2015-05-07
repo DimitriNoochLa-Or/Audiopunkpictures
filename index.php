@@ -19,7 +19,7 @@ define('ImageDirectory', 'pics/');
 <body>
 <!-- creating a login in for people to give approval for our web app to acce our instagram profile
 After geting arpporval we are now going to have it that information so we can play with it -->
-	<a href="https:api.instagram/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
+	<a href="https:api.instagram/oauth/authorize/?client_id=<?php echo client_ID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
 
 </body>
 </html>
