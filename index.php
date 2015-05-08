@@ -20,10 +20,18 @@
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => 2,
 	));
-		$result = crul_exec($ch);
+		$result = curl_exec($ch);
 		curl_close($ch);
 		return $result;
 		
+	}
+	// function to get userID cause userName doesnt allow us to get pictures!
+	function getUserID($userName){
+			$url = 'http://api.instagram.com/v1/users/search?q=' . $userName.'&client_id=',clientID;
+			$instagramInfo = connectToInstagram($url);
+			$result = json_decode($instagramInfo, true);
+
+			echo $result['data']['0']['id'];
 	}
 
 
@@ -49,7 +57,7 @@
 			curl_close($curl);
 
 			$result = json_decode($result, true);
-			echo $result['user']['username'];
+			 getUserID($result['user']['username']);
 			}
 			else{
 	?>
