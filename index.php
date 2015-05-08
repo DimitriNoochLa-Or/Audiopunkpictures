@@ -17,7 +17,7 @@ if (isset($_GET['code'])) {
 									'client_secret' => clientSecret,
 									'grant_type' => 'authorization_code',
 									'redirect_uri' => redirectURI,
-									'code' => $code,
+									'code' => $code
 									);
 //cURL is what we use in PHP, its a library calls to other API's.
 	$curl = curl_init($url); //seeting a cURL session and we put in $url becuase thats where we are getting the data from.
@@ -26,9 +26,13 @@ if (isset($_GET['code'])) {
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);	//Setting it equal to one becauase we are getting strings back.
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live workproduction we want to set this to true.
 
-}
 $result = curl_exec($curl);
-curl_close();
+curl_close($curl);
+
+$result = json_decode($result, true);
+echo $result['user']['username'];
+}
+else{
 ?>
 
 <!DOCTYPE html>
@@ -43,3 +47,6 @@ After geting arpporval we are now going to have it that information so we can pl
 
 </body>
 </html>
+<?php 
+}
+ ?>
