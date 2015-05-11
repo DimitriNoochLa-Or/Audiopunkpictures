@@ -19,7 +19,7 @@
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => 2,
-	));
+		}));
 		$result = curl_exec($ch);
 		curl_close($ch);
 		return $result;
@@ -33,7 +33,19 @@
 
 			echo $result['data']['0']['id'];
 	}
-
+// fucntion hto print out images on to a screen
+	function printImages($userID){
+		$url = 'http://api.instagram.com/v1/users/'. $userID. '/media/recent?client_id'. clientID. '&count=50'	
+		$instagramInfo = connectToInstagram($url);
+		$results = json_decode($instagramInfo, true); 
+		///parse thru the information one by one.
+		foreach($result['data'] as $items){
+			$image_url = $items['images']['low_resolution']['url'];// wea re going to go through all of my results 
+			//and give myself back the url of the 
+			//those pictures because we want to save it in the php sever
+			echo '<img src="'.$image_url.'"/><br/>';
+		}
+	}
 
 
 	//isset checks for booleans
@@ -57,7 +69,12 @@
 			curl_close($curl);
 
 			$result = json_decode($result, true);
-			 getUserID($result['user']['username']);
+
+			$userName = $result['user']['username'];
+
+			 $userID = getUserID($userName);
+
+			 printImages($userID);
 			}
 			else{
 	?>
