@@ -14,12 +14,12 @@
 	function connectToInstagram($url){
 		$ch = curl_init();
 
-		curl_setopt_array($ch, array({
-			CURLOPT_URL => $url;
+		curl_setopt_array($ch, array(
+			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => 2,
-		}));
+		));
 		$result = curl_exec($ch);
 		curl_close($ch);
 		return $result;
@@ -27,26 +27,37 @@
 	}
 	// function to get userID cause userName doesnt allow us to get pictures!
 	function getUserID($userName){
-			$url = 'http://api.instagram.com/v1/users/search?q=' . $userName.'&client_id=',clientID;
+			$url = 'https://api.instagram.com/v1/users/search?q=' . $userName.'&client_id='.clientID;
 			$instagramInfo = connectToInstagram($url);
 			$result = json_decode($instagramInfo, true);
 
-			echo $result['data']['0']['id'];
+			return $result['data']['0']['id'];
 	}
 // fucntion hto print out images on to a screen
 	function printImages($userID){
-		$url = 'http://api.instagram.com/v1/users/'. $userID. '/media/recent?client_id'. clientID. '&count=50'	
+		$url = 'https://api.instagram.com/v1/users/'. $userID. '/media/recent?client_id='. clientID. '&count=50';
 		$instagramInfo = connectToInstagram($url);
 		$results = json_decode($instagramInfo, true); 
 		///parse thru the information one by one.
-		foreach($result['data'] as $items){
+		foreach($results['data'] as $items){
 			$image_url = $items['images']['low_resolution']['url'];// wea re going to go through all of my results 
 			//and give myself back the url of the 
 			//those pictures because we want to save it in the php sever
 			echo '<img src="'.$image_url.'"/><br/>';
+			//calling the function to save the image url
+			savePictures($image_url);
 		}
 	}
+//funciton to save image to server
+	function savePictures($image_url){
+			echo $image_url.'<br>'; 
+			$filename = basename($image_url);// the filename is what we are storing. basename is PHP built in method that we are using to stor $image_url
+			echo $filename. '<br>'; //goes adne grabs an imagefile and stores it into out server/
 
+			$destination = ImageDirectory . $filename;//makign sure that the image doesnt exist in the storage
+			file_put_contents($destination, file_get_contents($image_url));
+
+	}
 
 	//isset checks for booleans
 	if (isset($_GET['code'])) {
