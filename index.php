@@ -35,7 +35,7 @@
 	}
 // fucntion hto print out images on to a screen
 	function printImages($userID){
-		$url = 'https://api.instagram.com/v1/users/'. $userID. '/media/recent?client_id='. clientID. '&count=50';
+		$url = 'https://api.instagram.com/v1/users/'. $userID. '/media/recent?client_id='. clientID. '&count=0';
 		$instagramInfo = connectToInstagram($url);
 		$results = json_decode($instagramInfo, true); 
 		///parse thru the information one by one.
@@ -43,7 +43,8 @@
 			$image_url = $items['images']['low_resolution']['url'];// wea re going to go through all of my results 
 			//and give myself back the url of the 
 			//those pictures because we want to save it in the php sever
-			echo '<img src="'.$image_url.'"/><br/>';
+			// echo '<img src="'.$image_url.'"/><br/>';
+			require_once(__DIR__ . "/carousel.php");
 			//calling the function to save the image url
 			savePictures($image_url);
 		}
@@ -52,7 +53,7 @@
 	function savePictures($image_url){
 			echo $image_url.'<br>'; 
 			$filename = basename($image_url);// the filename is what we are storing. basename is PHP built in method that we are using to stor $image_url
-			echo $filename. '<br>'; //goes adne grabs an imagefile and stores it into out server/
+			echo $filename. "<form action='$image_url'> <input type ='submit' class='fullscreen' value='fullscreen'></form>" . "<br>"; //goes adne grabs an imagefile and stores it into out server/
 
 			$destination = ImageDirectory . $filename;//makign sure that the image doesnt exist in the storage
 			file_put_contents($destination, file_get_contents($image_url));
@@ -79,29 +80,86 @@
 			$result = curl_exec($curl);
 			curl_close($curl);
 
-			$result = json_decode($result, true);
+			$results = json_decode($result, true);
 
-			$userName = $result['user']['username'];
+			$userName = $results['user']['username'];
 
 			 $userID = getUserID($userName);
 
-			 printImages($userID);
-			}
-			else{
+			printImages($userID);
+			
+			?>
+		  	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+
+	</head>
+	<body class="background2">
+		
+		
+	<!-- creating a login in for people to give approval for our web app to acce our instagram profile
+	After geting arpporval we are now going to have it that information so we can play with it -->
+
+	</body>
+		<script scr="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</html>
+
+	<?php 
+		}else{
 	?>
 
 	<!DOCTYPE html>
 	<html>
 	<head>
+		<meta charset="UTF-8">
 		<title></title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+
 	</head>
-	<body>
+	<body class="background">
+		<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class=" container-fluid">
+				<div class="navbar-header">
+					<h3>Welcome to my Webpage</h3>
+  					
+				</div>
+			</div>
+		</nav> -->
+		<div class="jumbotron">
+			<div class="container">  
+  				<h1 class="	glyphicon glyphicon-flash">Welcome <h1 class="glyphicon glyphicon-flash"></h1></h1>
+  				<a class=" a btn btn-primary btn-lg"  role="button" href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">My Instagram</a>
+			</div>
+		</div>
 	<!-- creating a login in for people to give approval for our web app to acce our instagram profile
 	After geting arpporval we are now going to have it that information so we can play with it -->
-		<a href="https:api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
 
 	</body>
+		<script scr="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</html>
 	<?php 
-	}
+}
 	 ?>

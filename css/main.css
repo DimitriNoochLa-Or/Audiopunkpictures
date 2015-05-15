@@ -1,0 +1,39 @@
+.background2{
+		background-image: url("../space.jpg");
+}
+.background{
+	background-image: url("../Bing.jpg");
+	text-align: center;
+}
+h1{
+	color: white;
+	
+
+}
+.jumbotron{
+	width: 450px;
+	height: 250px;
+	margin-left: 380px;
+	top: 120px;
+	opacity: 0.9;
+	background-color: black;
+    filter: alpha(opacity=20); 
+}
+
+h1:hover{
+	color: white;
+	opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+.a{
+	margin-top:25px;
+}
+.print{
+	width: auto;
+	height: auto;
+	text-align: center;
+	top: 120px;
+	opacity: 0.9;
+	background-color: black;
+    filter: alpha(opacity=20); 
+}
