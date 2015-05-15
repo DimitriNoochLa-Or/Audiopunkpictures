@@ -39,19 +39,13 @@
 		$instagramInfo = connectToInstagram($url);
 		$results = json_decode($instagramInfo, true); 
 		///parse thru the information one by one.
-		foreach($results['data'] as $items){
-			$image_url = $items['images']['low_resolution']['url'];// wea re going to go through all of my results 
-			//and give myself back the url of the 
-			//those pictures because we want to save it in the php sever
-			// echo '<img src="'.$image_url.'"/><br/>';
-			require_once(__DIR__ . "/carousel.php");
-			//calling the function to save the image url
-			savePictures($image_url);
-		}
+					require_once(__DIR__ . "/carousel.php");
+
+		
 	}
 //funciton to save image to server
 	function savePictures($image_url){
-			echo $image_url.'<br>'; 
+			
 			$filename = basename($image_url);// the filename is what we are storing. basename is PHP built in method that we are using to stor $image_url
 			echo $filename. "<form action='$image_url'> <input type ='submit' class='fullscreen' value='fullscreen'></form>" . "<br>"; //goes adne grabs an imagefile and stores it into out server/
 

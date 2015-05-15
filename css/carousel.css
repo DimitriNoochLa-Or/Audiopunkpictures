@@ -1,0 +1,15 @@
+.background2{
+    background-image: url("../space.jpg");
+}
+
+#wrapper {
+ 
+	width: 800px;
+	margin: 200px auto 0 auto;
+ 
+}
+
+
+img {
+border-radius: 25px;
+}

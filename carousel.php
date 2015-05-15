@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -26,27 +26,27 @@
 			<div class="carousel-inner" >
 				<div class="item active carsel">	
 					<?php 
-					require_once(__DIR__ . "/pics.php"); 
+					//require_once(__DIR__ . "/pic.php"); 
 					?>	
 				</div>
 				<div class="item carsel">
 					<?php 
-					require_once(__DIR__ . "/pics.php"); 
+					//require_once(__DIR__ . "/pic.php"); 
 					?>					
 				</div>
 				<div class="item carsel">
 					<?php 
-					require_once(__DIR__ . "/pics.php"); 
+					//require_once(__DIR__ . "/pic.php"); 
 					?>	
 				</div>
 				<div class="item carsel">
 					<?php 
-					require_once(__DIR__ . "/pics.php"); 
+					//require_once(__DIR__ . "/pic.php"); 
 					?>	
 				</div>
 				<div class="item carsel">
 					<?php 
-					require_once(__DIR__ . "/pics.php"); 
+					//require_once(__DIR__ . "/pic.php"); 
 					?>	
 				</div>
 			</div>
@@ -63,4 +63,23 @@
 	<script src="js/main.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-</html>
+</html> -->
+<body class="background2">
+<head>
+	<link rel="stylesheet" type="text/css" href="css/carousel.css">
+</head>
+
+	<div id="wrapper">
+			<?php
+			foreach($results['data'] as $items){
+			$image_url = $items['images']['low_resolution']['url'];// wea re going to go through all of my results 
+			//and give myself back the url of the 
+			//those pictures because we want to save it in the php sever
+			echo '<img src="'.$image_url.'"/>';
+			//calling the function to save the image url
+			savePictures($image_url);
+		}
+			 ?>
+		</div>
+	</div>
+</body>
