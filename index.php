@@ -39,7 +39,7 @@
 		$instagramInfo = connectToInstagram($url);
 		$results = json_decode($instagramInfo, true); 
 		///parse thru the information one by one.
-					require_once(__DIR__ . "/carousel.php");
+		require_once(__DIR__ . "/carousel.php");
 
 		
 	}
@@ -94,7 +94,7 @@
 <!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 

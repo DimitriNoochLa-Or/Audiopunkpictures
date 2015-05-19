@@ -1,4 +1,4 @@
-/*!
+c/*!
  * Bootstrap v3.3.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -940,7 +940,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
+  max-width: 75%;
   height: auto;
 }
 .img-rounded {
@@ -5818,6 +5818,7 @@ button.close {
 }
 .carousel {
   position: relative;
+  width: 75%;
 }
 .carousel-inner {
   position: relative;
