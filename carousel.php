@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<header>
-			My Photos
+		
 		</header>
 		<div id="carousel-example-generic" class="carousel slide carsel" data-ride="carousel" >
 			<ol class="carousel-indicators">

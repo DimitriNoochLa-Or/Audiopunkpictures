@@ -38,9 +38,14 @@ h1:hover{
 .img{
 	display:inline-block;
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 .center{
 	height: 350px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 
 }
 .carousel-inner{
@@ -54,4 +59,27 @@ h1:hover{
 	display: block;
 	text-align: center;
 	height: 320px;
+}
+
+@media only screen and (max-device-width:375px){
+	.jumbotron{
+	width: 50%;
+	height: 100%;
+	top: 120px;
+	opacity: 0.9;
+	margin-right: 50%;
+	background-color: black;
+    filter: alpha(opacity=20); 
+    text-align: none;
+    	}
+	body{
+		background-image: url("../Bing.jpg");
+		height: 500%;
+		-webkit-background-size: cover;
+  		-moz-background-size: cover;
+  		-o-background-size: cover;
+ 		 background-size: cover;
+
+
+	}
 }
